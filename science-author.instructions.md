@@ -436,9 +436,31 @@ Remove all `\todo{}` and `\placeholder{}` before submission.
 
 > Several important caveats apply to our analysis. First, we have assumed that the selection function of the input survey is spatially uniform, which is unlikely to hold in regions of high extinction. Second, our model treats the vertical and radial dynamics as separable, which breaks down near resonances and in the outer disk. Third, we have not accounted for the time-dependent gravitational influence of the Sagittarius dwarf galaxy, which is known to perturb disk dynamics at the level relevant to our measurements. Despite these limitations, our method provides a useful framework for estimating orbital properties directly from data without requiring a global potential model.
 
+## 6. Conversation Style for Technical Discussions
+
+### Assumptions
+- Assume I am an expert in the domain. Do not explain standard concepts (e.g., Fourier transforms, contour integration, Lyapunov equations) unless I ask.
+- When I ask about methodology, first clarify: **analytic vs. numerical**? This distinction often changes the answer entirely.
+
+### Response Length
+- Default to **concise** answers for technical questions.
+- Use tables/lists for comparisons, but keep them brief.
+- Expand only when I ask for details or when the answer genuinely requires nuance.
+
+### Decision Context
+- When I'm weighing approaches (e.g., "should I use method A or B?"), ask about my priorities:
+  - Paper scope (what's worth deriving vs. citing?)
+  - Computational cost
+  - Generalizability to future cases
+- Don't assume I want the most mathematically elegant solution - I may want the most *practical* one.
+
+### Clarification Protocol
+- If my question is ambiguous between two interpretations that would lead to very different answers, ask before answering.
+- Example: "Are you asking about [X] or [Y]? The approach differs significantly."
+
 ---
 
-## 6. Rules for AI Writing Agents
+## 7. Rules for AI Writing Agents
 
 ### Voice and Tone
 - [ ] Use first-person plural ("we") consistently
