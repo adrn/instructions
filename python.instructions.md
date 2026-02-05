@@ -1,5 +1,5 @@
 ---
-applyTo: "**/*.py"
+applyTo: "**/*.{py,ipynb}"
 description: This file describes my Python preferences.
 ---
 
@@ -25,6 +25,62 @@ For example, dependencies needed for testing (pytest, etc.) should go in a "test
 - Run a Python script with `uv run <script-name>.py`
 - Run Python tools like Pytest with `uv run pytest` or `uv run ruff`
 - Launch a Python repl with `uv run python`
+
+## Jupyter Notebooks
+
+These Python coding guidelines also apply when working with Jupyter notebooks (`.ipynb` files).
+
+### Running Notebooks
+
+- Use the integrated notebook execution tools in VS Code rather than terminal commands
+- Execute cells directly in the notebook editor
+- Notebooks automatically use the configured Python environment
+
+### Package Management in Notebooks
+
+- Install packages in notebooks using `uv add <package>` in the terminal, not `!pip install` in cells
+- After adding packages with `uv add`, use `uv sync` to ensure environment consistency
+- The notebook kernel will have access to packages installed via `uv`
+- Make sure ipykernel is installed in the environment for Jupyter support: `uv add ipykernel`
+
+### Code Style in Notebooks
+
+All code style guidelines apply to notebook cells:
+
+- **Type hints**: Include type hints in function definitions within reason. Most notebooks are written for exploration, so prioritize clarity.
+- **Immutability**: Don't mutate input parameters
+- **jaxtyping**: Use for arrays and PyTrees in data science workflows
+
+### Notebook Organization
+
+- **Markdown cells**: Use for explanations, context, and section headers
+- **Code cells**: Keep focused and modular - prefer small, testable functions
+- **Outputs**: Clear outputs before committing if they contain sensitive data or are large
+- If you add cells for testing or experiments, keep track of them so that we can clean up later.
+
+### Example Notebook Cell:
+
+```python
+from jaxtyping import Array, Float
+import jax.numpy as jnp
+
+def normalize_data(
+    data: Float[Array, "batch features"],
+    epsilon: float = 1e-8
+) -> Float[Array, "batch features"]:
+    """Normalize data to zero mean and unit variance.
+
+    Args:
+        data: Input data array
+        epsilon: Small value for numerical stability
+
+    Returns:
+        Normalized data array
+    """
+    mean = jnp.mean(data, axis=0)
+    std = jnp.std(data, axis=0)
+    return (data - mean) / (std + epsilon)
+```
 
 ## Core Development Principles
 
